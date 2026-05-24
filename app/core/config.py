@@ -19,8 +19,8 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: Optional[str] = None
     
     # MongoDB
-    MONGODB_URL: str
-    MONGODB_DB_NAME: str
+    MONGODB_URL: Optional[str] = None
+    MONGODB_DB_NAME: Optional[str] = None
     
     # Redis
     REDIS_URL: str

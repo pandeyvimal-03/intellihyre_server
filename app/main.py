@@ -35,7 +35,11 @@ async def shutdown_db_client():
 # Set all CORS enabled origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex="http://localhost:.*",
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://intellihyre-platform.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
