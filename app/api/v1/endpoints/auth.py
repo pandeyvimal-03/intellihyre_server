@@ -49,9 +49,8 @@ async def login(
         httponly=True, 
         expires=int(access_token_expires_delta.total_seconds()),
         samesite="lax",
-        secure=False,
+        secure=True,
         path="/",
-        domain="localhost"
     )
     response.set_cookie(
         key="refresh_token", 
@@ -59,9 +58,8 @@ async def login(
         httponly=True, 
         expires=int(refresh_token_expires_delta.total_seconds()),
         samesite="lax",
-        secure=False,
+        secure=True,
         path="/",
-        domain="localhost"
     )
     
     return user
@@ -184,8 +182,8 @@ async def refresh_token(
 
 @router.post("/logout")
 async def logout(response: Response):
-    response.delete_cookie(key="access_token", path="/", httponly=True, secure=False, samesite="lax", domain="localhost")
-    response.delete_cookie(key="refresh_token", path="/", httponly=True, secure=False, samesite="lax", domain="localhost")
+    response.delete_cookie(key="access_token", path="/", httponly=True, secure=True, samesite="lax")
+    response.delete_cookie(key="refresh_token", path="/", httponly=True, secure=True, samesite="lax")
     return {"message": "Logged out successfully"}
 
 @router.get("/me", response_model=UserSchema)
