@@ -1,12 +1,11 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.engine import URL
-from app.core.config import settings
+from sqlalchemy.engine import make_url
 
 # Force the async driver
-url = URL.create_from_string(settings.DATABASE_URL)
+url = make_url(settings.DATABASE_URL)
 if "+asyncpg" not in url.get_driver_name():
-    url = url.set(drivername="postgresql+asyncpg")
+    url = url.set(drivername=f"{url.get_driver_name()}+asyncpg")
 
 engine = create_async_engine(url, echo=True)
 
