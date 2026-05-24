@@ -26,6 +26,9 @@ RUN chmod +x start.sh
 # Force removal of synchronous driver to prevent conflicts
 RUN pip uninstall -y psycopg2 psycopg2-binary
 
+# Set default port
+ENV PORT=8000
+
 # Expose port
 EXPOSE 8000
 
