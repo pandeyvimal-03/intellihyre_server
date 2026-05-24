@@ -23,6 +23,9 @@ COPY . .
 # Ensure the start script is executable
 RUN chmod +x start.sh
 
+# Force removal of synchronous driver to prevent conflicts
+RUN pip uninstall -y psycopg2 psycopg2-binary
+
 # Expose port
 EXPOSE 8000
 
