@@ -43,6 +43,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_origin_regex=None,
 )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
