@@ -20,8 +20,11 @@ RUN poetry config virtualenvs.create false \
 # Copy the rest of the application
 COPY . .
 
+# Ensure the start script is executable
+RUN chmod +x start.sh
+
 # Expose port
 EXPOSE 8000
 
-# Use poetry to run uvicorn
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Use the start.sh script to run migrations and the server
+CMD ["./start.sh"]
