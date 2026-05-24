@@ -2,19 +2,17 @@ import os
 import io
 import json
 from datetime import datetime
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import select
-from app.core.config import settings
+from app.core.database import engine
 from app.models.application import Application, ApplicationStatus
 from app.schemas.application import ParsedResume
 from app.modules import ai_engine
 
-# Database setup (should ideally be shared from app.core.database if possible)
-DATABASE_URL = settings.DATABASE_URL
-async_engine = create_async_engine(DATABASE_URL, echo=True)
+# Database setup
 async_session_maker = sessionmaker(
-    bind=async_engine,
+    bind=engine,
     class_=AsyncSession,
     expire_on_commit=False,
 )
