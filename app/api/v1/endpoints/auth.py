@@ -48,8 +48,8 @@ async def login(
         value=access_token, 
         httponly=True, 
         expires=int(access_token_expires_delta.total_seconds()),
-        samesite="lax",
-        secure=True,
+        samesite="none",
+        secure=True, # In production this MUST be True
         path="/",
     )
     response.set_cookie(
@@ -57,8 +57,8 @@ async def login(
         value=refresh_token, 
         httponly=True, 
         expires=int(refresh_token_expires_delta.total_seconds()),
-        samesite="lax",
-        secure=True,
+        samesite="none",
+        secure=True, # In production this MUST be True
         path="/",
     )
     
